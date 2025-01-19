@@ -190,6 +190,48 @@ Here is the schema for the `product_catalog` index:
 5. **Access API Documentation**:
    - Visit `http://127.0.0.1:8000/docs` for OpenAPI documentation.
 
+### **ElasticSearch Setup and Bulk Data Upload**
+1. **Create the Index**:
+   Use the following command to create the `product_catalog` index in ElasticSearch:
+   ```bash
+   curl -X PUT "http://localhost:9200/product_catalog" -H 'Content-Type: application/json' -d'{
+     "mappings": {
+       "properties": {
+         "sku": { "type": "keyword" },
+         "name": { "type": "text", "analyzer": "standard" },
+         "category": { "type": "keyword" },
+         "description": { "type": "text", "analyzer": "standard" },
+         "stores": {
+           "type": "nested",
+           "properties": {
+             "store_id": { "type": "keyword" },
+             "availability": { "type": "boolean" },
+             "price": { "type": "float" }
+           }
+         }
+       }
+     }
+   }'
+   ```
+
+2. **Prepare Sample Data**:
+   The JSON file (`sample_data.json`) is already generated using:
+   ```bash
+   python generate_sample_data.py
+   ```
+
+3. **Use the Bulk Upload Script**:
+   Use the following command to upload the data:
+   ```bash
+   python upload_to_elasticsearch.py
+   ```
+
+4. **Verify Data**:
+   Run the following command to check if the data was successfully uploaded:
+   ```bash
+   curl -X GET "http://localhost:9200/product_catalog/_search?pretty=true&q=*:*"
+   ```
+
 ### **Frontend Setup**
 1. **Install Flutter**:
    - Follow the Flutter installation guide: [Flutter Docs](https://flutter.dev/docs/get-started/install).
