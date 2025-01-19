@@ -30,6 +30,45 @@ Full Stack App Solution for a Supermarket Chain
 - **Pagination**:
   - ElasticSearch uses the `from` and `size` parameters to support efficient pagination.
 
+### **ElasticSearch Schema**
+Here is the schema for the `product_catalog` index:
+```json
+{
+  "mappings": {
+    "properties": {
+      "sku": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "standard"
+      },
+      "category": {
+        "type": "keyword"
+      },
+      "description": {
+        "type": "text",
+        "analyzer": "standard"
+      },
+      "stores": {
+        "type": "nested",
+        "properties": {
+          "store_id": {
+            "type": "keyword"
+          },
+          "availability": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "float"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ### **Backend Framework**
 - **Framework**: FastAPI (Python)
   - Modern, asynchronous, and lightweight framework with built-in OpenAPI documentation.
@@ -182,4 +221,5 @@ Full Stack App Solution for a Supermarket Chain
   - Add user authentication.
   - Implement advanced filters (e.g., ratings, discounts).
   - Introduce caching for frequently accessed data.
+
 
