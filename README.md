@@ -184,7 +184,7 @@ Here is the schema for the `product_catalog` index:
 
 4. **Run the Backend**:
    ```bash
-   uvicorn main:app --reload
+   uvicorn backend:app --reload
    ```
 
 5. **Access API Documentation**:
