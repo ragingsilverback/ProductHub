@@ -1,5 +1,5 @@
 # SuperK
-Full Stack App Solution for a Supermarket Chain
+Full Stack App Solution for a Supermarket Chain leveraging Elasticsearch with Flutter Frontend and FastAPI Backend.
 
 # **Project Documentation**
 
